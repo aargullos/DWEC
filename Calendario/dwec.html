@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
+<head> <script src="calendario.js"></script> </head>
 <body>
-<h1>Calendario</h1>
+<h1>Añade Horas</h1>
 <table>
   <tr>
     <td>Lunes</td>
-    <td><input type="number" name="lunes" min="0" max="24"></td>
+    <td><input type="number" id="lunes" min="0" max="24"></td>
   </tr>
   <tr>
     <td>Martes</td>
-    <td><input type="number" name="martes" min="0" max="24"></td>
+    <td><input type="number" id="martes" min="0" max="24"></td>
   </tr>
   <tr>
     <td>Miercoles</td>
-    <td><input type="number" name="miercoles" min="0" max="24"></td>
+    <td><input type="number" id="miercoles" min="0" max="24"></td>
   </tr>
   <tr>
     <td>Jueves</td>
-    <td><input type="number" name="jueves" min="0" max="24"></td>
+    <td><input type="number" id="jueves" min="0" max="24"></td>
   </tr>
   <tr>
     <td>Viernes</td>
-    <td><input type="number" name="viernes" min="0" max="24"></td>
+    <td><input type="number" id="viernes" min="0" max="24"></td>
   </tr>
   <tr>
     <td>Sabado</td>
-    <td><input type="number" name="sabado" min="0" max="24"></td>
+    <td><input type="number" id="sabado" min="0" max="24"></td>
   </tr>
   <tr>
     <td>Domingo</td>
-    <td><input type="number" name="domingo" min="0" max="24"></td>
+    <td><input type="number" id="domingo" min="0" max="24"></td>
   </tr>
 </table>
+<button onclick="savehoras">Enviar Horas</button>
+<button onclick="">Sumar Horas</button>
 </body>
 </html>
