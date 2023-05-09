@@ -1,22 +1,83 @@
-function savehoras(){
-    var lunes = document.getElementById("lunes");
-    localStorage.setItem("lunes",lunes);
+import React, { useState } from 'react';
 
-    var martes = document.getElementById("martes");
-    localStorage.setItem("martes",martes);
+const Calendar = () => {
+  const [selectedDate, setSelectedDate] = useState('');
+  const [hours, setHours] = useState('');
+  const [actionList, setActionList] = useState([]);
+  const [editIndex, setEditIndex] = useState(-1);
 
-    var miercoles = document.getElementById("miercoles");
-    localStorage.setItem("miercoles",miercoles);
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
 
-    var jueves = document.getElementById("jueves");
-    localStorage.setItem("jueves",jueves);
+  const handleHoursChange = (e) => {
+    setHours(e.target.value);
+  };
 
-    var viernes = document.getElementById("viernes");
-    localStorage.setItem("viernes",viernes);
+  const handleAddHours = () => {
+    if (selectedDate && hours) {
+      const newAction = {
+        date: selectedDate,
+        hours: hours !== '' ? +hours : 0,
+      };
 
-    var sabado = document.getElementById("sabado");
-    localStorage.setItem("sabado",sabado);
+      if (editIndex !== -1) {
+        const updatedActionList = [...actionList];
+        updatedActionList[editIndex] = newAction;
+        setActionList(updatedActionList);
+        setEditIndex(-1);
+      } else {
+        setActionList([...actionList, newAction]);
+      }
 
-    var domingo = document.getElementById("domingo");
-    localStorage.setItem("domingo",domingo);
-}
+      setSelectedDate('');
+      setHours('');
+    }
+  };
+
+  const handleEdit = (index) => {
+    const { date, hours } = actionList[index];
+    setSelectedDate(date);
+    setHours(hours.toString());
+    setEditIndex(index);
+  };
+
+  const handleDelete = (index) => {
+    const updatedActionList = [...actionList];
+    updatedActionList.splice(index, 1);
+    setActionList(updatedActionList);
+  };
+
+  return (
+    <div>
+      <h1>My Calendar App</h1>
+      <input
+        type="text"
+        placeholder="Date (dd/MM/yyyy)"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
+      <br />
+      <input
+        type="number"
+        placeholder="Hours"
+        value={hours}
+        onChange={handleHoursChange}
+      />
+      <br />
+      <button onClick={handleAddHours}>{editIndex !== -1 ? 'Update' : 'Add'}</button>
+      <br />
+      <ul>
+        {actionList.map((action, index) => (
+          <li key={index}>
+            {action.date} - {action.hours} hours
+            <button onClick={() => handleEdit(index)}>Edit</button>
+            <button onClick={() => handleDelete(index)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Calendar;
