@@ -181,7 +181,6 @@ const Calendar = () => {
          value={searchName}
          onChange={handleSearchNameChange}
        />
-       <button onClick={applyFilter}>Apply Filter</button>
      </div>
      <br />
      <ul>
